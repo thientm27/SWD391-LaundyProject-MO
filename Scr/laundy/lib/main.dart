@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [BottomNavigationBar].
-
 void main() => runApp(const BottomNavigationBarExampleApp());
 
 class BottomNavigationBarExampleApp extends StatelessWidget {
-  const BottomNavigationBarExampleApp({super.key});
+  const BottomNavigationBarExampleApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +14,10 @@ class BottomNavigationBarExampleApp extends StatelessWidget {
 }
 
 class BottomNavigationBarExample extends StatefulWidget {
-  const BottomNavigationBarExample({super.key});
+  const BottomNavigationBarExample({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigationBarExample> createState() =>
+  _BottomNavigationBarExampleState createState() =>
       _BottomNavigationBarExampleState();
 }
 
@@ -45,10 +43,7 @@ class _BottomNavigationBarExampleState
       'Index 3: Offers',
       style: optionStyle,
     ),
-    Text(
-      'Index 4: Profile',
-      style: optionStyle,
-    ),
+    ProfileTab(),
   ];
 
   void _onItemTapped(int index) {
@@ -61,7 +56,7 @@ class _BottomNavigationBarExampleState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Laundy Shop'),
+        title: const Text('Laundry Shop'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -91,9 +86,59 @@ class _BottomNavigationBarExampleState
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor:
-            Colors.grey, // Change the color to your desired color
+        unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class ProfileTab extends StatelessWidget {
+  const ProfileTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage(
+                'https://cdn-icons-png.flaticon.com/512/3607/3607444.png'), // Replace with your avatar image URL
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'ID: 123456',
+            style: TextStyle(fontSize: 24),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Full Name',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Email',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Phone',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Change Password'),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Logout'),
+          ),
+        ],
       ),
     );
   }
